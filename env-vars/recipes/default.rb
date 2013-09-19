@@ -7,7 +7,7 @@ node[:deploy].each do |application, deploy|
     action :nothing
   end
 
-  template "#{deploy[:deploy_to]}/environment_variables.sh" do
+  template "#{deploy[:deploy_to]}/.env" do
     source "environment_variables.erb"
     cookbook 'env-vars'
     group deploy[:group]
@@ -19,9 +19,5 @@ node[:deploy].each do |application, deploy|
     only_if do
       File.exists?("#{deploy[:deploy_to]}") && File.exists?("#{deploy[:deploy_to]}/current/config/")
     end
-  end
-
-  execute "install my lib" do
-    command "sh #{deploy[:deploy_to]}/environment_variables.sh"
   end
 end
