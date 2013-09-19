@@ -9,7 +9,7 @@ node[:deploy].each do |application, deploy|
 
   template "#{deploy[:deploy_to]}/current/config/initializers/environment_variables.rb" do
     source "enviroment_variables.erb"
-    cookbook 'enviroment-variables'
+    cookbook 'env-vars'
     group deploy[:group]
     owner deploy[:user]
     variables(:env_vars => deploy[:env_vars])
