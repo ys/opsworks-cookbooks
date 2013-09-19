@@ -7,7 +7,7 @@ node[:deploy].each do |application, deploy|
     action :nothing
   end
 
-  template "#{deploy[:deploy_to]}/.env" do
+  template "#{deploy[:deploy_to]}/current/.env" do
     source "environment_variables.erb"
     cookbook 'env-vars'
     group deploy[:group]
