@@ -22,6 +22,6 @@ node[:deploy].each do |application, deploy|
     end
   end
   execute "install my lib" do
-    command " echo 'source /tmp/.env.sh' > /etc/profile"
+    command " echo 'source /tmp/.env.sh' >> /etc/profile"
   end
 end
