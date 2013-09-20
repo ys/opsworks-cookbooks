@@ -7,8 +7,8 @@ node[:deploy].each do |application, deploy|
     action :nothing
   end
 
-  template "/tmp/.env.sh" do
-    source "environment_variables.erb"
+  template "/etc/environment" do
+    source "environment.erb"
     cookbook 'env-vars'
     group deploy[:group]
     owner deploy[:user]
@@ -16,12 +16,5 @@ node[:deploy].each do |application, deploy|
     variables(:env_vars => deploy[:env_vars])
 
     notifies :run, resources(:execute => "restart Rails app #{application}")
-
-    only_if do
-      File.exists?("#{deploy[:deploy_to]}") && File.exists?("#{deploy[:deploy_to]}/current/config/")
-    end
-  end
-  execute "install my lib" do
-    command " echo 'source /tmp/.env.sh' >> /etc/profile"
   end
 end
