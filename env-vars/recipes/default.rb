@@ -7,7 +7,7 @@ node[:deploy].each do |application, deploy|
     action :nothing
   end
 
-  template "#{deploy[:deploy_to]}/.env.sh" do
+  template "/tmp/.env.sh" do
     source "environment_variables.erb"
     cookbook 'env-vars'
     group deploy[:group]
@@ -22,6 +22,6 @@ node[:deploy].each do |application, deploy|
     end
   end
   execute "install my lib" do
-    command "sh #{deploy[:deploy_to]}/.env.sh"
+    command "sh /tmp/.env.sh"
   end
 end
