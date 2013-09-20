@@ -31,6 +31,9 @@ node[:deploy].each do |application, deploy|
     mode "0755"
     owner "root"
     group "root"
+    variables({
+      :environment_variables => deploy[:environment_variables]
+    })
   end
 
   Chef::Log.info("Exporting variables for every new created process")

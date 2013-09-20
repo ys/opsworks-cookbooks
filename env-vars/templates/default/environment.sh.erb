@@ -1,5 +1,5 @@
 #!/bin/sh
 
-<% deploy[:environment_variables].each do |name,value| -%>
+<% @environment_variables.each do |name,value| -%>
   export <%= name %>=<%= value %>
 <% end -%>
