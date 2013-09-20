@@ -10,3 +10,6 @@
 [submodule "openssl"]
 	path = openssl
 	url = https://github.com/opscode-cookbooks/openssl.git
+[submodule "imagemagick"]
+	path = imagemagick
+	url = https://github.com/opscode-cookbooks/imagemagick.git
