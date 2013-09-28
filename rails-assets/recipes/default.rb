@@ -4,8 +4,7 @@ node[:deploy].each do |application, deploy|
 
   execute "rake assets: PRECOMPILE"  do
     cwd "#{deploy[:deploy_to]}/current"
-    command "bundle EXEC rake assets:PRECOMPILE"
-    command "bundle EXEC rake assets:sync"
+    command "bundle EXEC rake assets:PRECOMPILE && bundle EXEC rake assets:sync"
     environment " RAILS_ENV " => 'production'
   end
 end
